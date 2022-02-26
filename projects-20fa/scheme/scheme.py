@@ -460,6 +460,14 @@ def do_define_macro(expressions, env):
     """
     # BEGIN Problem 20
     "*** YOUR CODE HERE ***"
+    # validate_form(expressions, 2)
+    # target = expressions.first
+    # name = target.first
+    # formals = target.rest
+    # body = expressions.rest
+    # macro_procedure = MacroProcedure(formals, body, env)
+    # env.define(name, macro_procedure)
+    # return name
     # END Problem 20
 
 
@@ -571,6 +579,8 @@ class MuProcedure(Procedure):
 
     # BEGIN PROBLEM 18
     "*** YOUR CODE HERE ***"
+    def make_call_frame(self, args, env):
+        return env.make_child_frame(self.formals, args)
     # END PROBLEM 18
 
     def __str__(self):
@@ -587,6 +597,7 @@ def do_mu_form(expressions, env):
     validate_formals(formals)
     # BEGIN PROBLEM 18
     "*** YOUR CODE HERE ***"
+    return MuProcedure(formals, expressions.rest)
     # END PROBLEM 18
 
 SPECIAL_FORMS['mu'] = do_mu_form
@@ -859,3 +870,4 @@ def run(*argv):
     read_eval_print_loop(next_line, create_global_frame(), startup=True,
                          interactive=interactive, load_files=load_files)
     tscheme_exitonclick()
+
